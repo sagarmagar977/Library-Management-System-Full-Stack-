@@ -26,7 +26,7 @@ SECRET_KEY = 'k(6-_4sgig$sbrccr2*0=7s)bklpiywi#_121l)s(f8)dq^^wv'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['lmsfs.onrender.com']
+ALLOWED_HOSTS = ['lmsfs.onrender.com','127.0.0.1']
 
 # settings.py
 
@@ -87,10 +87,13 @@ WSGI_APPLICATION = 'librarymanagement.wsgi.application'
 #     }
 # } 
 
-DATABASE={
-    "default" : dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+# DATABASES={
+#     "default" : dj_database_url.parse(os.environ.get("DATABASE_URL"))
+# }
 
+DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

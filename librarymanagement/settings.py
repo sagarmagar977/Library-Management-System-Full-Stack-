@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'librarymanagement.wsgi.application'
 # }
 
 DATABASE={
-    "default" : dj_database_url.parse(os.environ.get("DATABSE_URL"))
+    "default" : dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 

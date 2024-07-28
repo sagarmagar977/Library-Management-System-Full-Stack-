@@ -25,7 +25,8 @@ SECRET_KEY = 'k(6-_4sgig$sbrccr2*0=7s)bklpiywi#_121l)s(f8)dq^^wv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://lmsfs.onrender.com']
+
+ALLOWED_HOSTS = ['lmsfs.onrender.com']
 
 # settings.py
 
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'librarymanagement.wsgi.application'
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
-# }
+# } 
 
 DATABASE={
     "default" : dj_database_url.parse(os.environ.get("DATABASE_URL"))

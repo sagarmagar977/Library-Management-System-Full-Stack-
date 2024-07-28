@@ -51,3 +51,7 @@ urlpatterns = [
     path('contactus', views.contactus_view),
 
 ]
+
+
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()

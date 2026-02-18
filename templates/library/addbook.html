@@ -121,28 +121,29 @@
     <div class="signup-form">
         <form method="post" class="form-horizontal">
 
-            <center>
-                <h2>ADD BOOK IN LIBRARY</h2>
-            </center>
+           <h3>ADD BOOK IN LIBRARY!</h3>
 
-            {% csrf_token %} {% for field in form %}
-            <div class="form-group">
-                <label class="control-label col-xs-4">{{ field.label_tag }}</label>
-                <div class="col-xs-8">
-                    {{ field }}
+            <form method="post" action="">
+              {% csrf_token %}
+            
+              {% for field in form %}
+                <div style="margin-bottom: 10px;">
+                  <div>{{ field.label_tag }}</div>
+                  <div>{{ field }}</div>
+            
+                  {% if field.errors %}
+                    <div style="color: red;">{{ field.errors }}</div>
+                  {% endif %}
                 </div>
-            </div>
-            {% endfor %}
+              {% endfor %}
+            
+              <button type="submit">ADD</button>
+            </form>
 
+            <p style="margin-top: 12px;">
+              <a href="{% url 'viewbook' %}">View Available Book In Library</a>
+            </p>
 
-            <div class="form-group">
-                <div class="col-xs-8 col-xs-offset-4">
-                    <button type="submit" class="btn btn-primary btn-lg">ADD</button>
-                </div>
-            </div>
-        </form>
-        <div class="text-center">View Available Book In Library<a href="viewbook">Click here</a></div>
-    </div>
 
 
 

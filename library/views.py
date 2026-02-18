@@ -84,18 +84,19 @@ def afterlogin_view(request):
         return render(request,'library/studentafterlogin.html')
 
 
-@login_required(login_url='adminlogin')
+@login_required(login_url="adminlogin")
 @user_passes_test(is_admin)
 def addbook_view(request):
-    #now it is empty book form for sending to html
-    form=forms.BookForm()
-    if request.method=='POST':
-        #now this form have data from html
-        form=forms.BookForm(request.POST)
+
+    if request.method == "POST":
+        form = forms.BookForm(request.POST)
         if form.is_valid():
-            user=form.save()
-            return render(request,'library/bookadded.html')
-    return render(request,'library/addbook.html',{'form':form})
+            form.save()
+            return redirect("viewbook")   # better than rendering directly
+    else:
+        form = forms.BookForm()
+
+    return render(request, "library/addbook.html", {"form": form})
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)

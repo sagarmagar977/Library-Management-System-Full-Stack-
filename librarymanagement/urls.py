@@ -41,7 +41,7 @@ urlpatterns = [
     path('afterlogin', views.afterlogin_view),
 
     path('addbook', views.addbook_view),
-    path('viewbook', views.viewbook_view),
+    path('viewbook', views.viewbook_view,name='viewbook'),
     path('issuebook', views.issuebook_view),
     path('viewissuedbook', views.viewissuedbook_view),
     path('viewstudent', views.viewstudent_view),

@@ -84,19 +84,18 @@ def afterlogin_view(request):
         return render(request,'library/studentafterlogin.html')
 
 
-@login_required(login_url="adminlogin")
+@login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def addbook_view(request):
-
-    if request.method == "POST":
-        form = forms.BookForm(request.POST)
+    #now it is empty book form for sending to html
+    form=forms.BookForm()
+    if request.method=='POST':
+        #now this form have data from html
+        form=forms.BookForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("viewbook")   # better than rendering directly
-    else:
-        form = forms.BookForm()
-
-    return render(request, "library/addbook.html", {"form": form})
+            user=form.save()
+            return render(request,'library/bookadded.html')
+    return render(request,'library/addbook.html',{'form':form})
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -200,12 +199,3 @@ def contactus_view(request):
             send_mail(str(name)+' || '+str(email),message, EMAIL_HOST_USER, ['wapka1503@gmail.com'], fail_silently = False)
             return render(request, 'library/contactussuccess.html')
     return render(request, 'library/contactus.html', {'form':sub})
-
-
-
-from django.contrib.auth import logout
-from django.shortcuts import redirect
-
-def logout_view(request):
-    logout(request)
-    return redirect('home')  # Redirect to the home page or any other page after logout
